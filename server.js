@@ -41,6 +41,7 @@ app.use("/api/test", userRoutes);
 const PORT = process.env.PORT || 3000;
 
 // Función para ejecutar seeders manualmente
+// Función para ejecutar seeders manualmente
 async function runSeeders() {
     console.log("Ejecutando seeders...");
     try {
@@ -50,9 +51,9 @@ async function runSeeders() {
         const medicamentosSeed = await import('./seeders/20250512000002-medicamentos-seed.js');
 
         // Ejecutar seeders
-        await rolesSeed.default.up(db.sequelize.getQueryInterface(), Sequelize);
-        await usersSeed.default.up(db.sequelize.getQueryInterface(), Sequelize);
-        await medicamentosSeed.default.up(db.sequelize.getQueryInterface(), Sequelize);
+        await rolesSeed.up(db.sequelize.getQueryInterface(), Sequelize);
+        await usersSeed.up(db.sequelize.getQueryInterface(), Sequelize);
+        await medicamentosSeed.up(db.sequelize.getQueryInterface(), Sequelize);
 
         console.log("Seeders ejecutados correctamente");
     } catch (error) {
