@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import db from "./app/models/index.js";
@@ -7,6 +9,13 @@ import medicamentoRoutes from "./app/routes/medicamento.routes.js";
 import detalleOrdenCompraRoutes from "./app/routes/detalleOrdenCompra.routes.js";
 
 const app = express();
+
+console.log("DB_HOST:", process.env.DB_HOST);
+console.log("DB_USER:", process.env.DB_USER);
+console.log("DB_PASSWORD:", process.env.DB_PASSWORD ? "Password establecida" : "Password no establecida");
+console.log("DB_NAME:", process.env.DB_NAME);
+console.log("DB_PORT:", process.env.DB_PORT);
+console.log("DB_SSL:", process.env.DB_SSL);
 
 const corsOptions = {
     origin: "http://localhost:5173", // Origen del frontend

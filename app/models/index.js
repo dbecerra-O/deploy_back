@@ -6,11 +6,24 @@ import userModel from "./user.model.js";
 import detalleOrdenCompraModel from "./detalleOrdenCompra.model.js";
 import medicamentoModel from "./medicamento.model.js";
 
+// Imprime información para debugging
+console.log("Configurando conexión a la base de datos:");
+console.log("Host:", dbConfig.HOST);
+console.log("Dialect:", dbConfig.dialect);
+console.log("SSL:", dbConfig.dialectOptions?.ssl ? "Habilitado" : "No configurado");
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   pool: dbConfig.pool,
-  port: dbConfig.PORT
+  port: dbConfig.PORT,
+  // IMPORTANTE: Agregar las opciones SSL aquí
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
 });
 
 const db = {};
@@ -18,6 +31,7 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// El resto del código permanece igual
 // 1. Definir modelos
 db.user = userModel(sequelize, Sequelize);
 db.role = roleModel(sequelize, Sequelize);
