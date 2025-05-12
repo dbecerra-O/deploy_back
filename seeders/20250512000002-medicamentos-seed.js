@@ -10,7 +10,7 @@ export const up = async (queryInterface, Sequelize) => {
   const twoYearsLater = new Date(now);
   twoYearsLater.setFullYear(now.getFullYear() + 2);
 
-  await queryInterface.bulkInsert('medicamento', [
+  await queryInterface.bulkInsert('medicamentos', [
     {
       descripcionMed: 'Paracetamol 500mg',
       fechaFabricacion: oneYearAgo,
@@ -85,7 +85,8 @@ export const up = async (queryInterface, Sequelize) => {
 };
 
 export const down = async (queryInterface, Sequelize) => {
-  await queryInterface.bulkDelete('medicamento', null, {});
+  // Cambia "medicamento" a "medicamentos" aquí también
+  await queryInterface.bulkDelete('medicamentos', null, {});
 };
 
 export default { up, down };
